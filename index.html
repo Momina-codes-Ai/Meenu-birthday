@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Maneeha Yasir ✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#050508',
+                        obsidian: '#0b0c16',
+                        roseGold: '#e0a96d',
+                        softPink: '#ffb5e8',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        urdu: ['"Noto Nastaliq Urdu"', '"Jameel Noori Nastaleeq"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #050508;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(224, 169, 109, 0.6), 0 0 40px rgba(255, 181, 232, 0.3);
+        }
+        .glow-box {
+            box-shadow: 0 0 35px rgba(224, 169, 109, 0.25);
+        }
+        .glass-panel {
+            background: rgba(15, 16, 28, 0.82);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(224, 169, 109, 0.25);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(224, 169, 109, 0.4); }
+            50% { transform: scale(1.04); box-shadow: 0 0 45px rgba(224, 169, 109, 0.8); }
+        }
+        .pulse-btn {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+        @keyframes floatBalloon {
+            0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-10vh) translateX(25px) rotate(15deg); opacity: 0; }
+        }
+        .balloon {
+            position: absolute;
+            bottom: -50px;
+            width: 36px;
+            height: 46px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatBalloon 8s linear infinite;
+        }
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 16px;
+            width: 2px;
+            height: 12px;
+            background: rgba(255,255,255,0.4);
+        }
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .screen.active {
+            display: flex;
+            opacity: 1;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050508;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e0a96d;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative selection:bg-roseGold selection:text-midnight">
+
+    <!-- Background Fireworks / Particle Canvas -->
+    <canvas id="fireworksCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Top Action Bar (Audio & Photo Customize Toggle) -->
+    <div class="fixed top-5 right-5 z-50 flex items-center gap-3">
+        <button onclick="openPhotoModal()" class="glass-panel px-3.5 py-2 rounded-full text-roseGold font-medium text-xs sm:text-sm flex items-center gap-1.5 hover:bg-obsidian/90 transition shadow-lg cursor-pointer border border-roseGold/30">
+            <span>🖼️</span> <span class="hidden sm:inline">Change Photos</span>
+        </button>
+        <button id="audioToggle" onclick="toggleAudio()" class="glass-panel px-4 py-2 rounded-full text-roseGold font-medium text-xs sm:text-sm flex items-center gap-2 hover:bg-obsidian/90 transition shadow-lg cursor-pointer border border-roseGold/30">
+            <span id="audioIcon">🎵</span> <span id="audioText">Play Music</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <main class="relative z-10 w-full max-w-4xl mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center">
+
+        <!-- ================= SCREEN 1: WELCOME SCREEN ================= -->
+        <div id="screen-welcome" class="screen active flex-col items-center text-center w-full max-w-2xl">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl glow-box w-full relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-48 h-48 bg-roseGold/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-softPink/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-roseGold/10 border border-roseGold/30 text-roseGold text-xs uppercase tracking-widest font-semibold">
+                    Exclusive Birthday Celebration
+                </div>
+
+                <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-wide text-white mb-6 leading-tight glow-text">
+                    Let's Celebrate Your Birthday Maneeha!
+                </h1>
+
+                <p class="text-gray-300 text-base sm:text-lg mb-10 font-light max-w-md mx-auto">
+                    A magical romantic experience crafted with elegance, warmth, and love, especially for <span class="text-roseGold font-medium">Maneeha Yasir</span>.
+                </p>
+
+                <button onclick="startExperience()" class="pulse-btn bg-gradient-to-r from-roseGold to-amber-600 text-midnight font-bold px-10 py-4 rounded-full text-lg shadow-xl hover:brightness-110 transition cursor-pointer">
+                    Let's Start ✨
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 2: COUNTDOWN SCREEN ================= -->
+        <div id="screen-countdown" class="screen flex-col items-center text-center w-full">
+            <div class="glass-panel p-12 sm:p-20 rounded-3xl glow-box flex flex-col items-center justify-center min-w-[280px] sm:min-w-[380px]">
+                <p class="text-roseGold uppercase tracking-widest text-sm mb-4 font-semibold">Get Ready</p>
+                <div id="countdownNumber" class="font-serif text-7xl sm:text-9xl font-bold text-white glow-text animate-pulse">
+                    3
+                </div>
+                <p class="text-gray-400 text-sm mt-6">The surprise is unfolding...</p>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 3: CELEBRATION & WISHES SCREEN ================= -->
+        <div id="screen-celebration" class="screen flex-col items-center text-center w-full max-w-3xl">
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl glow-box w-full flex flex-col items-center">
+                
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white mb-2 glow-text">
+                    Happy Birthday, Maneeha Yasir! 🎉
+                </h2>
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-roseGold to-transparent my-3"></div>
+
+                <!-- Birthday Photo Container -->
+                <div class="relative my-4 rounded-2xl overflow-hidden border-2 border-roseGold/40 shadow-2xl max-w-md w-full bg-midnight group">
+                    <img id="celebrationImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" 
+                         alt="Maneeha Yasir Celebration Photo" 
+                         class="w-full h-auto object-cover max-h-[380px] transform group-hover:scale-105 transition duration-700"
+                         onerror="this.src='https://placehold.co/600x800/0b0c16/e0a96d?text=Maneeha+Yasir';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent opacity-60"></div>
+                </div>
+
+                <!-- Heartfelt English Birthday Wishes -->
+                <div class="bg-midnight/70 p-4 sm:p-6 rounded-2xl border border-roseGold/30 max-w-xl my-3 shadow-inner">
+                    <p class="text-gray-200 text-sm sm:text-base italic font-serif leading-relaxed">
+                        "Happy Birthday to the most gorgeous and graceful Maneeha Yasir! May this year bring boundless happiness, radiant success, and all the love your beautiful heart can hold. You deserve all the magic the world has to offer!"
+                    </p>
+                </div>
+
+                <!-- Next Button -->
+                <button onclick="goToFinalScreen()" class="mt-4 bg-gradient-to-r from-roseGold to-amber-600 text-midnight font-bold px-8 py-3.5 rounded-full shadow-lg hover:brightness-110 transition flex items-center gap-2 cursor-pointer text-base">
+                    Next Surprise ➔
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 4: EYES & POETRY SCREEN ================= -->
+        <div id="screen-final" class="screen flex-col items-center text-center w-full max-w-3xl">
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl glow-box w-full flex flex-col items-center">
+                
+                <p class="text-roseGold uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">A Special Poem & Moment</p>
+                <div class="w-16 h-0.5 bg-roseGold/40 mb-5"></div>
+
+                <!-- Close-up Eyes Photo Container -->
+                <div class="relative my-2 rounded-2xl overflow-hidden border-2 border-roseGold/40 shadow-2xl max-w-xs sm:max-w-sm w-full bg-midnight group">
+                    <img id="eyesImg" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" 
+                         alt="Maneeha Yasir Eyes" 
+                         class="w-full h-auto object-cover max-h-[320px] transform group-hover:scale-105 transition duration-700"
+                         onerror="this.src='https://placehold.co/600x600/0b0c16/e0a96d?text=Maneeha+Eyes';">
+                </div>
+
+                <!-- Exact Urdu Poetry Quotation -->
+                <div class="my-5 px-6 py-5 rounded-2xl bg-midnight/80 border border-roseGold/40 w-full max-w-2xl shadow-xl">
+                    <p class="font-urdu text-xl sm:text-3xl text-roseGold leading-loose tracking-wide glow-text" dir="rtl">
+                        کوئی لفظوں کے لیے بیٹھا رہا اور کسی نے انکھیں پڑھ لی
+                    </p>
+                    <p class="text-gray-400 text-xs sm:text-sm mt-3 tracking-wider font-sans uppercase">
+                        — Maneeha Yasir
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 mt-2">
+                    <button onclick="restartExperience()" class="border border-roseGold text-roseGold hover:bg-roseGold hover:text-midnight font-medium px-6 py-2.5 rounded-full transition cursor-pointer text-sm">
+                        Replay Celebration ↺
+                    </button>
+                    <button onclick="openPhotoModal()" class="bg-roseGold/20 hover:bg-roseGold/30 text-roseGold border border-roseGold/40 font-medium px-6 py-2.5 rounded-full transition cursor-pointer text-sm">
+                        Change Photos ⚙️
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= PHOTO CUSTOMIZATION MODAL ================= -->
+    <div id="photoModal" class="fixed inset-0 z-50 bg-midnight/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-lg w-full glow-box relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closePhotoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            
+            <h3 class="font-serif text-2xl font-bold text-white mb-2">Customize Photos</h3>
+            <p class="text-gray-300 text-xs sm:text-sm mb-6">Upload or replace your photos instantly from your device.</p>
+
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-roseGold text-xs uppercase tracking-wider mb-2 font-semibold">1. Celebration Photo (Screen 3)</label>
+                    <input type="file" accept="image/*" onchange="previewCustomPhoto(event, 'celebrationImg')" class="w-full text-xs text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-roseGold file:text-midnight hover:file:brightness-110 cursor-pointer">
+                </div>
+
+                <div>
+                    <label class="block text-roseGold text-xs uppercase tracking-wider mb-2 font-semibold">2. Eyes & Poetry Photo (Screen 4)</label>
+                    <input type="file" accept="image/*" onchange="previewCustomPhoto(event, 'eyesImg')" class="w-full text-xs text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-roseGold file:text-midnight hover:file:brightness-110 cursor-pointer">
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-end">
+                <button onclick="closePhotoModal()" class="bg-gradient-to-r from-roseGold to-amber-600 text-midnight font-bold px-6 py-2.5 rounded-full text-sm shadow-lg hover:brightness-110 transition cursor-pointer">
+                    Apply & Continue ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Balloons Container -->
+    <div id="balloonContainer" class="fixed inset-0 pointer-events-none overflow-hidden z-20 hidden"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        function openPhotoModal() {
+            document.getElementById('photoModal').classList.remove('hidden');
+            document.getElementById('photoModal').classList.add('flex');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.remove('flex');
+            document.getElementById('photoModal').classList.add('hidden');
+        }
+
+        function previewCustomPhoto(event, targetImgId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(targetImgId).src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let melodyInterval = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, duration, type = 'sine', gainVal = 0.1) {
+            if (!audioCtx || !isAudioPlaying) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function startMelody() {
+            if (isAudioPlaying) return;
+            initAudio();
+            isAudioPlaying = true;
+            document.getElementById('audioIcon').textContent = '🔊';
+            document.getElementById('audioText').textContent = 'Music Playing';
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 587.33, 493.88, 392.00];
+            let index = 0;
+
+            playTone(523.25, 1.2, 'sine', 0.15);
+            setTimeout(() => playTone(659.25, 1.5, 'sine', 0.15), 300);
+
+            melodyInterval = setInterval(() => {
+                if (!isAudioPlaying) return;
+                playTone(notes[index], 0.8, 'triangle', 0.08);
+                index = (index + 1) % notes.length;
+            }, 600);
+        }
+
+        function stopMelody() {
+            isAudioPlaying = false;
+            if (melodyInterval) clearInterval(melodyInterval);
+            document.getElementById('audioIcon').textContent = '🎵';
+            document.getElementById('audioText').textContent = 'Play Music';
+        }
+
+        function toggleAudio() {
+            if (isAudioPlaying) {
+                stopMelody();
+            } else {
+                startMelody();
+            }
+        }
+
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function startExperience() {
+            startMelody();
+            switchScreen('screen-countdown');
+            runCountdown();
+        }
+
+        function runCountdown() {
+            let count = 3;
+            const numEl = document.getElementById('countdownNumber');
+            numEl.textContent = count;
+            playTone(440, 0.3, 'sine', 0.1);
+
+            const timer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    numEl.textContent = count;
+                    playTone(440 + (3 - count) * 110, 0.3, 'sine', 0.1);
+                } else if (count === 0) {
+                    numEl.textContent = "GO! ✨";
+                    playTone(880, 0.5, 'sine', 0.15);
+                } else {
+                    clearInterval(timer);
+                    switchScreen('screen-celebration');
+                    triggerCelebrationEffects();
+                }
+            }, 1000);
+        }
+
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let fireworksActive = true;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class FireworkParticle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 6 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.08;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createFireworkBurst() {
+            if (!fireworksActive) return;
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * (canvas.height * 0.6);
+            const colors = ['#e0a96d', '#ffb5e8', '#b5e2fa', '#ffffff', '#ffd700'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 40; i++) {
+                particles.push(new FireworkParticle(x, y, color));
+            }
+        }
+
+        function startFireworks() {
+            fireworksActive = true;
+            createFireworkBurst();
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        function triggerCelebrationEffects() {
+            document.getElementById('balloonContainer').classList.remove('hidden');
+            createBalloons();
+            startFireworks();
+        }
+
+        function createBalloons() {
+            const container = document.getElementById('balloonContainer');
+            container.innerHTML = '';
+            const colors = ['#e0a96d', '#ffb5e8', '#b5e2fa', '#ffffb5', '#ff9999'];
+            
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = `${Math.random() * 90 + 5}%`;
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDuration = `${6 + Math.random() * 6}s`;
+                balloon.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(balloon);
+            }
+        }
+
+        function goToFinalScreen() {
+            switchScreen('screen-final');
+        }
+
+        function restartExperience() {
+            document.getElementById('balloonContainer').classList.add('hidden');
+            switchScreen('screen-welcome');
+        }
+
+        setInterval(() => {
+            const celebActive = document.getElementById('screen-celebration').classList.contains('active') ||
+                                document.getElementById('screen-final').classList.contains('active');
+            if (celebActive) {
+                createFireworkBurst();
+            }
+        }, 800);
+    </script>
+</body>
+</html>
